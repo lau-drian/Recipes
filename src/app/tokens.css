@@ -1,0 +1,23 @@
+/* src/app/tokens.css */
+/* Palette tokens (raw colours) */
+
+:root {
+    /* Neutral are for surfaces */
+    --neutral-0: #ffffff;
+    --neutral-50: #faf9f6;
+    --neutral-100: #f6f3ec;
+    --neutral-200: #ede7dc;
+    --neutral-300: #ddd6c8;
+    --neutral-400: #c9c1b2;
+    --neutral-500: #b2aa9b;
+    --neutral-600: #8e8779;
+    --neutral-700: #6d675c;
+    --neutral-800: #4a453d;
+    --neutral-900: #2c2a25;
+
+    /* Terracota is used for accent surfaces */
+    --terracotta-50: #f8f2ee;
+    --terracotta-100: #f1e2d9;
+    --terracotta-800: #4e271c;
+
+  }

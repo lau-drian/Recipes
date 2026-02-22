@@ -7,38 +7,54 @@ export type Recipe = {
   
   export const recipes: Recipe[] = [
     {
-      title: "Simple Tomato Pasta",
-      slug: "simple-tomato-pasta",
+      title: "Baked oats",
+      slug: "baked-oats",
       ingredients: [
-        "200g pasta",
-        "1 onion",
-        "2 garlic cloves",
-        "400g chopped tomatoes",
-        "Olive oil",
-        "Salt"
+        "1 cup almond milk",
+        "2 Tbspflaxseeds + 6 Tbsplukewarm water",
+        "1 ½ banana",
+        "½ cup blueberries / raspberries",
+        "1 cup strawberries",
+        "3 Tbspmelted coconut oil",
+        "2 cups rolled oats",
+        "⅓ cup almonds",
+        "⅓ cup hemp seeds",
+        "⅔ cup coconut flakes",
+        "2 tsp cinnamon",
+        "1 tsp cardamom",
+        "1 tsp baking powder",
+        "1 tsp vanilla"
       ],
       steps: [
-        "Boil the pasta according to the packet instructions.",
-        "Heat olive oil in a pan and cook the onion until soft.",
-        "Add garlic and cook for 30 seconds.",
-        "Add chopped tomatoes and simmer for 10 minutes.",
-        "Drain pasta and mix with sauce."
+        "Preheat oven to 175 degrees.",
+        "Mix flax seeds mix, milk and coconut oil.",
+        "Add banana and strawberries to the bottom of a greased pie pan.",
+        "Reserve 2 tbsp of the almonds, hemp seeds and coconut flakes.",
+        "Combine oats, remaining almonds, hemp seeds, coconut flakes, baking powder, cinnamon, brown sugar and salt.",
+        "Combine almond milk, maple syrup and coconut oil; stir in flaxseed mixture.",
+        "Pour wet into dry and stir to combine.",
+        "Layer bananas and strawberries in the baking dish and spread oat mixture on top.",
+        "Bake for 40-50 minutes or until the top is crisp and the middle is set.",
+        "Let cool for 10 min before serving."
       ]
     },
     {
-      title: "Avocado Toast",
-      slug: "avocado-toast",
+      title: "Banana bread",
+      slug: "banana-bread",
       ingredients: [
-        "2 slices sourdough bread",
-        "1 ripe avocado",
-        "Salt",
-        "Chilli flakes"
+        "Ripe bananas",
+        "Flour",
+        "Eggs",
+        "Butter",
+        "Sugar",
+        "Baking soda",
+        "Salt"
       ],
       steps: [
-        "Toast the bread.",
-        "Mash the avocado with salt.",
-        "Spread over toast.",
-        "Top with chilli flakes."
+        "Mash bananas and mix with wet ingredients.",
+        "Combine dry ingredients and fold into banana mixture.",
+        "Pour into loaf pan and bake until set.",
+        "Cool before slicing."
       ]
     }
   ]

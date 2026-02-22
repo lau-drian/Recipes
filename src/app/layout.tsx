@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ThemeToggle from "./components/ThemeToggle";
+import { Source_Serif_4 } from "next/font/google"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+  variable: "--font-source-serif-4",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,11 +20,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" className={`${sourceSerif.variable} antialiased`}>
+<body
+  suppressHydrationWarning
+  style={{
+    background: "var(--color-background)",
+    color: "var(--color-text-default)",
+    fontFamily: "var(--font-source-serif-4)",
+  }}
+  className="min-h-screen antialiased"
+>  
+  <main className="mx-auto max-w-[680px] px-5 py-6 sm:px-8 sm:py-10">
+  <div className="flex justify-end pb-4">
+    <ThemeToggle />
+  </div>
+    {children}
+  </main>
       </body>
     </html>
   );

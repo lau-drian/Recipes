@@ -1,36 +1,35 @@
-import Link from "next/link"
-import { recipes } from "@/data/recipes"
+import { getAllRecipes } from "../../../lib/recipes"
+import { RecipesList } from "@/app/recipes/RecipesList"
 
-export default function RecipesPage() {
+export const dynamic = "force-dynamic"
+
+export default async function RecipesPage() {
+  let recipes
+  try {
+    recipes = getAllRecipes()
+  } catch (err) {
+    console.error("[RecipesPage] getAllRecipes failed:", err)
+    return (
+      <main className="min-h-screen bg-background [color:var(--color-text-subtle)] p-6 sm:p-8">
+        <div className="max-w-2xl mx-auto">
+          <p className="text-red-600">Unable to load recipes. Check the terminal for errors.</p>
+        </div>
+      </main>
+    )
+  }
   return (
-    <main className="min-h-screen bg-white text-neutral-900 p-6 sm:p-8">
+    <main className="min-h-screen bg-surface text-subtle p-6 sm:p-8">
       <div className="max-w-2xl mx-auto">
         <header className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight mb-2">
-            All recipes
+            Recipes
           </h1>
-          <p className="text-neutral-600">
+          <p className="text-subtle">
             Tap a recipe to open it.
           </p>
         </header>
 
-        <ul className="space-y-3">
-          {recipes.map((recipe) => (
-            <li key={recipe.slug}>
-              <Link
-                href={`/recipes/${recipe.slug}`}
-                className="block rounded-xl border border-neutral-200 p-4 hover:border-neutral-300 active:scale-[0.99] transition"
-              >
-                <div className="text-lg font-semibold">
-                  {recipe.title}
-                </div>
-                <div className="text-sm text-neutral-600 mt-1">
-                  {recipe.ingredients.length} ingredients · {recipe.steps.length} steps
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <RecipesList recipes={recipes} />
       </div>
     </main>
   )
