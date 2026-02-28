@@ -2,9 +2,6 @@ import fs from "fs"
 import path from "path"
 import { fileURLToPath } from "url"
 import matter from "gray-matter"
-import { remark } from "remark"
-import html from "remark-html"
-import remarkGfm from "remark-gfm"
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const fromLib = path.join(__dirname, "..", "content", "recipes")
@@ -67,15 +64,8 @@ export async function getRecipeBySlug(slug: string) {
 
   const { data, content } = matter(fileContents)
 
-  const processedContent = await remark()
-    .use(remarkGfm)
-    .use(html)
-    .process(content)
-
-  const contentHtml = processedContent.toString()
-
   return {
     ...data,
-    contentHtml,
+    content,
   }
 }

@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ThemeToggle from "./components/ThemeToggle";
-import { Source_Serif_4 } from "next/font/google"
+import SiteHeader from "./components/SiteHeader";
+import { Karla, Source_Serif_4, JetBrains_Mono } from "next/font/google"
+
+const karla = Karla({
+  subsets: ["latin"],
+  variable: "--font-karla",
+  display: "swap",
+})
 
 const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
   variable: "--font-source-serif-4",
+  display: "swap",
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
   display: "swap",
 })
 
@@ -20,20 +32,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sourceSerif.variable} antialiased`}>
+    <html lang="en" className={`${karla.variable} ${sourceSerif.variable} ${jetbrainsMono.variable} antialiased`}>
 <body
   suppressHydrationWarning
   style={{
     background: "var(--color-background)",
     color: "var(--color-text-default)",
-    fontFamily: "var(--font-source-serif-4)",
   }}
   className="min-h-screen antialiased"
->  
+>
+  <SiteHeader />
+  <div className="site-header-spacer" aria-hidden />
   <main className="mx-auto max-w-[680px] px-5 py-6 sm:px-8 sm:py-10">
-  <div className="flex justify-end pb-4">
-    <ThemeToggle />
-  </div>
     {children}
   </main>
       </body>

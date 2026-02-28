@@ -7,16 +7,22 @@
 ========================================= */
 
 :root {
-  --background: var(--neutral-50);
-  --surface: var(--neutral-100);
+  --background: var(--neutral-100);
+  --surface: var(--neutral-50);
+  --surface-elevated: #ffffff;
+  --surface-inverted: #000000;
   --text-default: var(--neutral-900);
   --text-subtle: var(--neutral-700);
+  --text-muted: var(--neutral-500);
+  --text-inverted: var(--neutral-200);
   --text-tag: var(--neutral-700);
-  --text-on-tag: var(--neutral-700);
+  --text-on-tag: var(--terracotta-800);
+  --text-on-callout: var(--terracotta-050);
   --bg-tag: var(--bg-callout);
   --bg-callout: var(--terracotta-100);
   --border-strong: var(--neutral-900);
   --border-default: var(--neutral-300);
+  --border-wavy: var(--terracotta-800);
   --border-subtle: var(--neutral-200);
   --focus-ring: #000000;
 }
@@ -24,14 +30,20 @@
 :root[data-theme="dark"] {
   --background: #0a0a0a;
   --surface: var(--neutral-900);
+  --surface-elevated: var(--neutral-1000);
+  --surface-inverted: var(--neutral-200);
   --text-default: #ededed;
   --text-subtle: #b3b3b3;
+  --text-muted: var(--neutral-800);
+  --text-inverted: var(--neutral-900);
   --text-tag: #b3b3b3;
-  --text-on-tag: var(--neutral-700);
+  --text-on-tag: var(--terracotta-050);
+  --text-on-callout: var(--terracotta-050);
   --bg-tag: var(--bg-callout);
   --bg-callout: #1a1a1a;
   --border-strong: #b3b3b3;
   --border-default: #ffffff;
+  --border-wavy: var(--terracotta-050);
   --border-subtle: #1f1f1f;
   --focus-ring: #ffffff;
 }
@@ -46,26 +58,32 @@
 
   --color-background: var(--background);
   --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-inverted: var(--surface-inverted);
   --color-text-default: var(--text-default);
   --color-text-subtle: var(--text-subtle);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverted: var(--text-inverted);
   --color-text-tag: var(--text-tag);
   --color-text-on-tag: var(--text-on-tag);
+  --color-text-on-callout: var(--text-on-callout);
   --color-bg-tag: var(--bg-tag);
   --color-bg-callout: var(--bg-callout);
   --color-border-strong: var(--border-strong);
   --color-border-default: var(--border-default);
+  --color-border-wavy: var(--border-wavy);
   --color-border-subtle: var(--border-subtle);
   --color-focus: var(--focus-ring);
 }
 
 /* =========================================
-   BASE ELEMENTS
+   BASE
 ========================================= */
 
 body {
   background: var(--background);
   color: var(--text-default);
-  font-family: var(--font-sans);
+  font-family: var(--font-karla);
 }
 
 /* Accessible focus */
@@ -75,7 +93,34 @@ body {
 }
 
 /* =========================================
-   TYPOGRAPHY (Tailwind Typography)
+   LAYOUT
+========================================= */
+
+/* Reserve space so content never scrolls under the header */
+.site-header-spacer {
+  height: 3.5rem; /* matches header height (py-3 + line) */
+}
+
+/* =========================================
+   TYPOGRAPHY – Global
+========================================= */
+
+.recipe-intro {
+  font-size: 1.25rem; /*20px*/
+}
+
+/* Reusable small serif heading (20px) – use in TipBox or anywhere */
+.heading-sm-serif,
+.tip-box .tip-box-title,
+.tip-box h6 {
+  font-family: var(--font-source-serif-4);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+}
+
+/* =========================================
+   TYPOGRAPHY – Prose
 ========================================= */
 
 .prose {
@@ -96,7 +141,7 @@ body {
   --tw-prose-pre-code: var(--color-text-default);
   --tw-prose-pre-bg: var(--color-surface);
 
-  /* Keep “invert” aligned too, in case prose-invert appears anywhere */
+  /* Keep "invert" aligned in case prose-invert is used */
   --tw-prose-invert-body: var(--color-text-default);
   --tw-prose-invert-headings: var(--color-text-default);
   --tw-prose-invert-bold: var(--color-text-default);
@@ -110,11 +155,45 @@ body {
 }
 
 .prose h2 {
+  font-size: 1.75rem;
+  margin-top: 2.5rem ;  /* 40px */
   margin-bottom: 1rem; /* 16px */
+  @apply tracking-tight;
+}
+
+.prose h2:first-of-type {
+  margin-top: 1rem;
+}
+
+/* Page title: single place for standalone h1 */
+main h1 {
+  font-family: var(--font-source-serif-4);
+  @apply text-6xl font-bold tracking-tight mb-5;
+}
+
+/* Prose headings use Source Serif 4 */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  font-family: var(--font-source-serif-4);
 }
 
 .prose code {
   color: var(--text-default);
+}
+
+/* Bullets and numbers outside content margin (list-outside) – higher specificity to override typography plugin */
+body main .prose ul,
+body main .prose ol {
+  list-style-position: outside;
+  padding-left: 1.5rem;
+}
+body main .prose li {
+  margin-left: 0;
+  padding-left: 0.25rem;
 }
 
 /* =========================================
@@ -132,30 +211,35 @@ body {
     margin-top: 0;
   }
 
-  /* Tip / callout box */
-  .prose blockquote {
-    margin: 1.25rem 0;
-    padding: .5rem 0.9rem;
-    font-style: normal;
-    quotes: none;
-    border-left: none;
-    border-radius: 0px;
-    background: var(--bg-callout);
+  /* Cooking mode: strikethrough via overlay so layout never shifts */
+  .prose .cooking-mode-done {
+    position: relative;
+    color: var(--color-text-muted);
+  }
+  /* Bold inside completed items use the same muted colour */
+  .prose .cooking-mode-done strong {
     color: inherit;
+    font-weight: 700;
   }
 
-  .prose blockquote p {
-    margin: 0.25rem 0;
+  /* Repeating line every 1.6em (match leading) so each text line is struck */
+  .prose .cooking-mode-done::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(0.8em - 0.25px),
+      var(--color-text-muted) calc(0.8em - 0.25px),
+      var(--color-text-muted) calc(0.8em + 0.25px),
+      transparent calc(0.8em + 0.25px),
+      transparent 1.6em
+    );
+    pointer-events: none;
   }
-
-  .prose blockquote p:first-child strong {
-    display: block;
-    margin-bottom: 0.25rem;
-    font-weight: 900;
-  }
-
-  .prose blockquote::before,
-  .prose blockquote::after {
-    content: none;
+  /* Don’t show strikethrough when the item has no text */
+  .prose .cooking-mode-done:empty::after {
+    display: none;
   }
 }

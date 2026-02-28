@@ -1,3 +1,4 @@
+// Route: /recipes (recipes index)
 import { getAllRecipes } from "../../../lib/recipes"
 import { RecipesList } from "@/app/recipes/RecipesList"
 
@@ -21,9 +22,7 @@ export default async function RecipesPage() {
     <main className="min-h-screen bg-surface text-subtle p-6 sm:p-8">
       <div className="max-w-2xl mx-auto">
         <header className="mb-8">
-          <h1 className="text-3xl font-bold tracking-tight mb-2">
-            Recipes
-          </h1>
+          <h1>Recipes</h1>
           <p className="text-subtle">
             Tap a recipe to open it.
           </p>

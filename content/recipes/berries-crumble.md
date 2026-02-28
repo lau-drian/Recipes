@@ -4,7 +4,7 @@ slug: berries-crumble
 tags:
   - baking
 category: dessert
-servings: 4
+servings:
 prepTime: 20 min
 cookTime: 35 min
 ---
@@ -31,3 +31,5 @@ cookTime: 35 min
 4. Add maple syrup and coconut oil.
 5. Pour berry mixture on a greased pan, then add crumble.
 6. Bake for **35-40 min** until fruits are bubbling around the edges and the crumble is firm and lightly browned.
+
+

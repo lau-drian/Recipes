@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useMemo, useState } from "react"
+import WaveDivider from "@/app/components/WaveDivider"
 
 type RecipeMeta = {
   title: string
@@ -33,7 +34,7 @@ function matchesQuery(recipe: RecipeMeta, q: string): boolean {
     return true
   return false
 }
-
+<WaveDivider/>
 export function RecipesList({ recipes }: { recipes: RecipeMeta[] }) {
   const [query, setQuery] = useState("")
 
@@ -45,17 +46,23 @@ export function RecipesList({ recipes }: { recipes: RecipeMeta[] }) {
 
   return (
     <>
-      <div className="mb-6">
+      <div className="mb-6 relative">
         <label htmlFor="search" className="sr-only">
           Search recipes
         </label>
+        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[color:var(--color-text-subtle)]" aria-hidden>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+        </span>
         <input
           id="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search delicious breakfast"
-          className="w-full rounded-full border px-4 py-3
-          bg-[color:var(--color-background)]
+          className="w-full rounded-full border pl-11 pr-4 py-3
+          bg-[color:var(--color-surface-elevated)]
           text-[color:var(--color-text-default)]
           border-[color:var(--color-border-default)]
           placeholder:text-[color:var(--color-text-subtle)]

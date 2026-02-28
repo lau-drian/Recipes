@@ -1,5 +1,7 @@
+// Route: / (homepage)
 import { getAllRecipes } from "../../lib/recipes"
 import { RecipesList } from "@/app/recipes/RecipesList"
+import WaveDivider from "@/app/components/WaveDivider"
 
 export const dynamic = "force-dynamic"
 
@@ -20,13 +22,8 @@ export default async function HomePage() {
   return (
     <main className="min-h-screen bg-background text-default p-6 sm:p-8">
       <div className="max-w-2xl mx-auto">
-        <header className="mb-6">
-          <h1 className="text-3xl font-bold tracking-tight mb-2">
-            Recipes
-          </h1>
-          <p className="text-subtle">
-            Search by title, category or tags.
-          </p>
+        <header className="mb-7 text-center">
+        <h1>Lovely recipes</h1>          <WaveDivider />
         </header>
 
         <RecipesList recipes={recipes} />

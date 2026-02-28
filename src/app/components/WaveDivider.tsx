@@ -1,23 +1,32 @@
-const waveSvg = encodeURIComponent(`
-<svg xmlns="http://www.w3.org/2000/svg" width="60" height="16" viewBox="0 0 60 16">
-  <path d="M0 8 Q7.5 0 15 8 T30 8 T45 8 T60 8"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.5"
-        stroke-linecap="round"/>
-</svg>
-`.trim())
+interface Props {
+  className?: string;
+}
 
-export default function WaveDivider() {
+export default function WaveDivider({
+  className = "text-[var(--color-border-wavy)]",
+}: Props) {
   return (
-    <div
+  <svg
       aria-hidden="true"
-      className="my-6 h-4 w-full bg-repeat-x"
-      style={{
-        backgroundImage: `url("data:image/svg+xml,${waveSvg}")`,
-        backgroundSize: "60px 16px",
-        color: "var(--color-border-default)",
-      }}
-    />
-  )
+      className={`w-full h-4 ${className}`}
+  > 
+    <defs>
+      <pattern
+          id="wavyPattern"
+          patternUnits="userSpaceOnUse"
+          width="40"
+          height="20"
+      > 
+        <path 
+          d="M0 10 Q 10 0, 20 10 T 40 10"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        /> 
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#wavyPattern)"/>
+  </svg>
+  );
 }

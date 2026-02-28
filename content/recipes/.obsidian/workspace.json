@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "banana-bread.md",
+                "file": "berry-cheesecake.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "banana-bread"
+              "title": "berry-cheesecake"
             }
           }
         ]
@@ -185,10 +185,12 @@
   },
   "active": "aa8fb8ded7a46334",
   "lastOpenFiles": [
+    "sloppy-joes.md",
+    "berry-cheesecake.md",
     "berries-crumble.md",
-    "baked-oats.md",
-    "banana-bread.md",
+    "apple-compote.md",
     "black-bean-soup.md",
-    "sloppy-joes.md"
+    "banana-bread.md",
+    "baked-oats.md"
   ]
 }
