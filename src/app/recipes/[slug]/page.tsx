@@ -1,6 +1,8 @@
 // Route: /recipes/[slug] — single recipe detail
 import { notFound } from "next/navigation"
 import { getRecipeBySlug } from "../../../../lib/recipes"
+import { getAppLocale } from "lib/locale-server"
+import { getUi } from "lib/ui-strings"
 import WaveDivider from "@/app/components/WaveDivider"
 import Tag from "@/app/components/Tag"
 import CookingModeRecipe from "@/app/components/CookingModeRecipe"
@@ -22,7 +24,9 @@ export default async function RecipeDetailPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const recipe = (await getRecipeBySlug(slug)) as RecipeMeta | null
+  const locale = await getAppLocale()
+  const t = getUi(locale)
+  const recipe = (await getRecipeBySlug(slug, locale)) as RecipeMeta | null
   if (!recipe) notFound()
 
   return (
@@ -38,15 +42,21 @@ export default async function RecipeDetailPage({
 
         <section className="mb-10">
         <p className="text-sm text-[color:var(--color-text-subtle)]">
-  <span className="font-semibold text-[color:var(--color-text-subtle)]">Prep time:</span>{" "}
-  {recipe.prepTime}{" "}
-  <span className="mx-1">|</span>
-  <span className="font-semibold text-[color:var(--color-text-subtle)]">Cook time:</span>{" "}
-  {recipe.cookTime}{" "}
-  <span className="mx-1">|</span>
-  <span className="font-semibold text-[color:var(--color-text-subtle)]">Serves:</span>{" "}
-  {recipe.servings}
-</p>
+          <span className="font-semibold text-[color:var(--color-text-subtle)]">
+            {t.prepTime}:
+          </span>{" "}
+          {recipe.prepTime}{" "}
+          <span className="mx-1">|</span>
+          <span className="font-semibold text-[color:var(--color-text-subtle)]">
+            {t.cookTime}:
+          </span>{" "}
+          {recipe.cookTime}{" "}
+          <span className="mx-1">|</span>
+          <span className="font-semibold text-[color:var(--color-text-subtle)]">
+            {t.serves}:
+          </span>{" "}
+          {recipe.servings}
+        </p>
 
 <div className="flex flex-wrap items-center gap-3 mb-6 pt-6">
 <Tag>{recipe.category}</Tag>
@@ -59,7 +69,12 @@ export default async function RecipeDetailPage({
 
 </section>
 
-        <CookingModeRecipe content={recipe.content} slug={slug} showCookingMode={false} />
+        <CookingModeRecipe
+          content={recipe.content}
+          slug={slug}
+          locale={locale}
+          showCookingMode={false}
+        />
       </div>
     </main>
   )

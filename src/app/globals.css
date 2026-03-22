@@ -8,42 +8,42 @@
 
 :root {
   --background: var(--neutral-100);
-  --surface: var(--neutral-50);
+  --surface: var(--neutral-100);
   --surface-elevated: #ffffff;
   --surface-inverted: #000000;
   --text-default: var(--neutral-900);
   --text-subtle: var(--neutral-700);
-  --text-muted: var(--neutral-500);
+  --text-muted: var(--neutral-600);
   --text-inverted: var(--neutral-200);
   --text-tag: var(--neutral-700);
-  --text-on-tag: var(--terracotta-800);
+  --text-on-tag: var(--terracotta-900);
   --text-on-callout: var(--terracotta-050);
-  --bg-tag: var(--bg-callout);
+  --bg-tag: var(--terracotta-200);
   --bg-callout: var(--terracotta-100);
   --border-strong: var(--neutral-900);
   --border-default: var(--neutral-300);
-  --border-wavy: var(--terracotta-800);
+  --border-wavy: var(--terracotta-500);
   --border-subtle: var(--neutral-200);
   --focus-ring: #000000;
 }
 
 :root[data-theme="dark"] {
-  --background: #0a0a0a;
-  --surface: var(--neutral-900);
-  --surface-elevated: var(--neutral-1000);
+  --background: #151412;
+  --surface: #151412;
+  --surface-elevated: #26231f;
   --surface-inverted: var(--neutral-200);
-  --text-default: #ededed;
-  --text-subtle: #b3b3b3;
-  --text-muted: var(--neutral-800);
+  --text-default: var(--terracotta-100);
+  --text-subtle: var(--terracotta-200);
+  --text-muted: #7c756e;
   --text-inverted: var(--neutral-900);
   --text-tag: #b3b3b3;
-  --text-on-tag: var(--terracotta-050);
+  --text-on-tag: var(--terracotta-900);
   --text-on-callout: var(--terracotta-050);
-  --bg-tag: var(--bg-callout);
-  --bg-callout: #1a1a1a;
+  --bg-tag: var(--terracotta-300);
+  --bg-callout: #241f1c;
   --border-strong: #b3b3b3;
-  --border-default: #ffffff;
-  --border-wavy: var(--terracotta-050);
+  --border-default: var(--terracotta-300);
+  --border-wavy: var(--terracotta-200);
   --border-subtle: #1f1f1f;
   --focus-ring: #ffffff;
 }
@@ -99,6 +99,24 @@ body {
 /* Reserve space so content never scrolls under the header */
 .site-header-spacer {
   height: 3.5rem; /* matches header height (py-3 + line) */
+}
+
+/* Bottom border with controllable dash segments – tune --dash-length and --dash-gap */
+.border-bottom-dashed {
+  --dash-length: 4px;
+  --dash-gap: 4px;
+  background-image: linear-gradient(
+    to right,
+    var(--color-border-wavy) 0,
+    var(--color-border-wavy) var(--dash-length),
+    transparent var(--dash-length),
+    transparent calc(var(--dash-length) + var(--dash-gap))
+  );
+  background-size: calc(var(--dash-length) + var(--dash-gap)) 1.5px;
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 /* =========================================

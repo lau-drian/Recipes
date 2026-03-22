@@ -14,11 +14,19 @@
     --neutral-700: #6d675c;
     --neutral-800: #4a453d;
     --neutral-900: #2c2a25;
-    --neutral-1000: #1a1a1a;
+    --neutral-1000: #151412;
 
     /* Terracota is used for accent surfaces */
     --terracotta-50: #f8f2ee;
     --terracotta-100: #f1e2d9;
+    --terracotta-200: #e7c7b5;
+    --terracotta-300: #dda089;
+    --terracotta-400: #c97b5f;
+    --terracotta-500: #b86145;
+    --terracotta-600: #944d37;
+    --terracotta-700: #703a29;
     --terracotta-800: #4e271c;
+    --terracotta-900: #2e160f;
+    
 
   }

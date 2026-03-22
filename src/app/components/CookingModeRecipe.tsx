@@ -14,6 +14,8 @@ import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { visit } from "unist-util-visit"
 import TipBox from "@/app/components/TipBox"
+import type { AppLocale } from "lib/locale"
+import { getUi } from "lib/ui-strings"
 
 const TIPBOX_CLASS =
   "tip-box my-8 py-4 px-4 rounded-xl font-normal bg-[color:var(--color-bg-callout)] text-[color:var(--color-text-on-callout)] [&_p]:!mt-0 [&_p]:mb-1 [&_p:first-child_strong]:block [&_p:first-child_strong]:mb-0 [&_p:first-child_strong]:font-black"
@@ -76,6 +78,7 @@ const ListContext = createContext<ListContextValue | null>(null)
 type RecipeListContextValue = {
   slug: string
   listIndexRef: React.MutableRefObject<number>
+  locale: AppLocale
 }
 const RecipeListContext = createContext<RecipeListContextValue | null>(null)
 
@@ -101,9 +104,11 @@ function ListWrapper({
 function CheckableLi({ children }: { children?: ReactNode }) {
   const listCtx = useContext(ListContext)
   const checkedCtx = useContext(CheckedContext)
+  const recipeCtx = useContext(RecipeListContext)
   if (!listCtx || !checkedCtx) {
     return <li>{children}</li>
   }
+  const t = getUi(recipeCtx?.locale ?? "en")
   const { listId, indexRef } = listCtx
   const index = indexRef.current++
   const itemKey = `${listId}-${index}`
@@ -120,7 +125,7 @@ function CheckableLi({ children }: { children?: ReactNode }) {
           checked={isChecked}
           onChange={() => checkedCtx.toggle(itemKey)}
           className="-ml-8 mt-1.5 size-4 shrink-0 rounded border-[color:var(--color-border-default)] bg-[color:var(--color-surface)] accent-[color:var(--color-surface-inverted)] focus:ring-2 focus:ring-[color:var(--color-focus)]"
-          aria-label={`Mark as ${isChecked ? "incomplete" : "done"}`}
+          aria-label={isChecked ? t.markIncomplete : t.markDone}
         />
         <span
           className={`inline-block min-h-[1.5em] leading-[1.6] ${isChecked ? "cooking-mode-done w-max max-w-full" : ""}`}
@@ -135,14 +140,21 @@ function CheckableLi({ children }: { children?: ReactNode }) {
 type CookingModeRecipeProps = {
   content: string
   slug: string
+  locale?: AppLocale
   /** When false, recipe body only (no cooking-mode button or checkboxes). Component kept for later re-enable. */
   showCookingMode?: boolean
 }
 
-export default function CookingModeRecipe({ content, slug, showCookingMode = true }: CookingModeRecipeProps) {
+export default function CookingModeRecipe({
+  content,
+  slug,
+  locale = "en",
+  showCookingMode = true,
+}: CookingModeRecipeProps) {
+  const t = getUi(locale)
   const [isCookingMode, setIsCookingMode] = useState(false)
   const [checked, setChecked] = useState<CheckedState>({})
-  const storageKey = `${STORAGE_PREFIX}-${slug}`
+  const storageKey = `${STORAGE_PREFIX}-${slug}-${locale}`
   const listIndexRef = useRef(0)
 
   useEffect(() => {
@@ -244,14 +256,14 @@ export default function CookingModeRecipe({ content, slug, showCookingMode = tru
             onClick={toggleCookingMode}
             className="rounded-full border border-[color:var(--color-border-default)] bg-[color:var(--color-surface-inverted)] px-4 py-2 text-sm font-bold text-[color:var(--color-text-inverted)] hover:border-[color:var(--color-border-default)] hover:bg-[color:var(--color-surface-inverted)] hover:text-[color:var(--color-text-inverted)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)]"
             aria-pressed={isCookingMode}
-            aria-label={isCookingMode ? "Exit cooking mode" : "Enter cooking mode"}
+            aria-label={isCookingMode ? t.cookingModeExit : t.cookingModeEnter}
           >
-            {isCookingMode ? "Recipe mode" : "Cooking mode"}
+            {isCookingMode ? t.cookingModeButtonCooking : t.cookingModeButtonRecipe}
           </button>
         </div>
       )}
       <div className="prose">
-        <RecipeListContext.Provider value={{ slug, listIndexRef }}>
+        <RecipeListContext.Provider value={{ slug, listIndexRef, locale }}>
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeBlockquoteTitle()]}

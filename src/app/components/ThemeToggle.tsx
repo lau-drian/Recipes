@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import type { UiCopy } from "lib/ui-strings"
 
 type Theme = "light" | "dark"
 
@@ -33,7 +34,11 @@ function MoonIcon({ className }: { className?: string }) {
   )
 }
 
-export default function ThemeToggle() {
+export default function ThemeToggle({
+  labels,
+}: {
+  labels: Pick<UiCopy, "lightMode" | "darkMode">
+}) {
   const [theme, setTheme] = useState<Theme>("light")
   const [ready, setReady] = useState(false)
 
@@ -62,17 +67,14 @@ export default function ThemeToggle() {
         setTheme(next)
         applyTheme(next)
       }}
-      className="rounded-full border border-[color:var(--color-border-default)] bg-[color:var(--color-background)] px-4 py-2 text-sm text-[color:var(--color-text-default)] hover:bg-[color:var(--color-surface)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)]"
-      aria-label="Toggle dark mode"
+      className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-[color:var(--color-border-default)] bg-[color:var(--color-background)] text-[color:var(--color-text-subtle)] hover:bg-[color:var(--color-surface)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)]"
+      aria-label={theme === "dark" ? labels.lightMode : labels.darkMode}
     >
-      <span className="flex items-center gap-2">
-        {theme === "dark" ? (
-          <SunIcon className="size-4 shrink-0" />
-        ) : (
-          <MoonIcon className="size-4 shrink-0" />
-        )}
-        {theme === "dark" ? "Light mode" : "Dark mode"}
-      </span>
+      {theme === "dark" ? (
+        <SunIcon className="size-4 shrink-0" />
+      ) : (
+        <MoonIcon className="size-4 shrink-0" />
+      )}
     </button>
   )
 }
