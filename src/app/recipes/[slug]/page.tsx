@@ -71,7 +71,7 @@ export default async function RecipeDetailPage({
             {recipe.prepTime}{" "}
             <span className="mx-1">|</span>
             <span className="font-semibold text-[color:var(--color-text-subtle)]">
-              {t.serves}:
+              {t.servings}:
             </span>{" "}
             {recipe.servings}
           </p>

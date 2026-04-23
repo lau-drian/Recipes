@@ -3,8 +3,8 @@ title: Sopa de frijoles negros
 slug: black-bean-soup
 tags:
   - salado
-  - olla de cocción lenta
   - sopa
+  - crockpot
 category: lunch
 servings: 8
 prepTime: 45 min

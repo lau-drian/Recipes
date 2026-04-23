@@ -5,7 +5,7 @@ tags:
   - savoury
   - asian
 category: lunch
-servings: 4
+servings: 3
 prepTime: 40 min
 cookTime: 25 min
 ---

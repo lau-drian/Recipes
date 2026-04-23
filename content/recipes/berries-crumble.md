@@ -4,7 +4,7 @@ slug: berries-crumble
 tags:
   - baking
 category: dessert
-servings:
+servings: "4"
 prepTime: 20 min
 cookTime: 35 min
 ---

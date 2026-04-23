@@ -41,6 +41,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const locale = await getAppLocale();
+  const t = getUi(locale);
   const htmlLang = locale === "es" ? "es" : "en";
   return (
     <html lang={htmlLang} className={`${karla.variable} ${sourceSerif.variable} ${jetbrainsMono.variable} antialiased`}>
@@ -50,13 +51,19 @@ export default async function RootLayout({
     background: "var(--color-background)",
     color: "var(--color-text-default)",
   }}
-  className="min-h-screen antialiased"
+  className="flex min-h-screen flex-col antialiased"
 >
   <SiteHeader locale={locale} />
   <div className="site-header-spacer" aria-hidden />
-  <main className="mx-auto max-w-[680px] px-5 py-6 sm:px-8 sm:py-10">
+  <main className="mx-auto w-full max-w-[680px] flex-1 px-5 py-6 sm:px-8 sm:py-10">
     {children}
   </main>
+  <footer
+    className="mx-auto mt-auto w-full max-w-[680px] px-5 py-6 text-center text-sm text-[color:var(--color-text-subtle)] sm:px-8 sm:py-8"
+    role="contentinfo"
+  >
+    {t.siteFooter}
+  </footer>
       </body>
     </html>
   );

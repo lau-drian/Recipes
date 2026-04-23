@@ -10,7 +10,7 @@ export type UiCopy = {
   searchPlaceholder: string
   noRecipesFound: string
   prepTime: string
-  serves: string
+  servings: string
   lightMode: string
   darkMode: string
   languageToggleAria: string
@@ -29,6 +29,7 @@ export type UiCopy = {
   notFoundTitle: string
   notFoundDescription: string
   notFoundHomeLink: string
+  siteFooter: string
 }
 
 const en: UiCopy = {
@@ -42,7 +43,7 @@ const en: UiCopy = {
   searchPlaceholder: "Search something yummy 😋",
   noRecipesFound: "No recipes found.",
   prepTime: "Prep time",
-  serves: "Serves",
+  servings: "Servings",
   lightMode: "Light mode",
   darkMode: "Dark mode",
   languageToggleAria: "Switch language",
@@ -54,15 +55,17 @@ const en: UiCopy = {
   cookingModeButtonRecipe: "Cooking mode",
   markDone: "Mark as done",
   markIncomplete: "Mark as incomplete",
-  metaTitleSuffix: "Lau & Adrian",
-  metaHomeTabTitle: "What are we eating? · Lau & Adrian",
+  metaTitleSuffix: "L&A Cookbook",
+  metaHomeTabTitle: "L&A Cookbook",
   metaDefaultDescription:
-    "Our shared recipe collection — meals we cook and return to.",
+    "Our shared recipe collection.",
   metaRecipesIndexDescription: "Browse every recipe in our collection.",
   notFoundTitle: "This page isn’t on the menu",
   notFoundDescription:
     "The link may be wrong, or we moved the recipe. Try the home page or search from there.",
   notFoundHomeLink: "Back to recipes",
+  siteFooter:
+    "❤️ Made with love and mostly plants by Laura & Adrian",
 }
 
 const es: UiCopy = {
@@ -76,7 +79,7 @@ const es: UiCopy = {
   searchPlaceholder: "Busca algo rico 😋",
   noRecipesFound: "No se encontraron recetas.",
   prepTime: "Preparación",
-  serves: "Porciones",
+  servings: "Porciones",
   lightMode: "Modo claro",
   darkMode: "Modo oscuro",
   languageToggleAria: "Cambiar idioma",
@@ -88,15 +91,17 @@ const es: UiCopy = {
   cookingModeButtonRecipe: "Modo cocina",
   markDone: "Marcar como hecho",
   markIncomplete: "Marcar como pendiente",
-  metaTitleSuffix: "Lau y Adrian",
-  metaHomeTabTitle: "¿Qué vamos a comer? · Lau y Adrian",
+  metaTitleSuffix: "L&A Recetario",
+  metaHomeTabTitle: "L&A Recetario",
   metaDefaultDescription:
-    "Nuestra colección de recetas — platos que cocinamos una y otra vez.",
+    "Nuestra colección de recetas.",
   metaRecipesIndexDescription: "Todas las recetas de nuestra colección.",
   notFoundTitle: "Esta página no está en el menú",
   notFoundDescription:
     "El enlace puede estar mal o movimos la receta. Prueba volver al inicio y buscar desde ahí.",
   notFoundHomeLink: "Volver a las recetas",
+  siteFooter:
+    "❤️ Hecho con amor y sobre todo plantas por Laura y Adrian",
 }
 
 export const uiStrings: Record<AppLocale, UiCopy> = { en, es }

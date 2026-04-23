@@ -60,7 +60,7 @@ export function RecipesList({
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t.searchPlaceholder}
           className="w-full rounded-full border pl-11 pr-4 py-3
-          bg-[color:var(--color-surface)]
+          bg-[color:var(--color-surface-elevated)]
           text-[color:var(--color-text-default)]
           border-[color:var(--color-border-default)]
           placeholder:text-[color:var(--color-text-subtle)]

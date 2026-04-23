@@ -1,5 +1,5 @@
 ---
-title: Pan de plátano
+title: Panque de plátano
 slug: banana-bread
 tags:
   - horneado

@@ -1,7 +1,6 @@
 ---
 title: Baked oats
 slug: baked-oats
-intro: A hearty breakfast for the weekend
 tags:
   - baking
 category: breakfast

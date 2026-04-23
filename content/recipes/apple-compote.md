@@ -4,7 +4,7 @@ slug: apple-compote
 tags:
   - sweet
 category: compotes
-servings:
+servings: 1 jar
 prepTime: 15 min
 cookTime: 40 min
 ---

@@ -3,7 +3,7 @@ title: Sloppy joes
 slug: sloppy-joes
 tags:
   - salado
-  - olla de cocción lenta
+  - crockpot
 category: lunch
 servings: 4
 prepTime: 45 min
