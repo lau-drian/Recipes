@@ -10,7 +10,6 @@ export type UiCopy = {
   searchPlaceholder: string
   noRecipesFound: string
   prepTime: string
-  cookTime: string
   serves: string
   lightMode: string
   darkMode: string
@@ -23,6 +22,13 @@ export type UiCopy = {
   cookingModeButtonRecipe: string
   markDone: string
   markIncomplete: string
+  metaTitleSuffix: string
+  metaHomeTabTitle: string
+  metaDefaultDescription: string
+  metaRecipesIndexDescription: string
+  notFoundTitle: string
+  notFoundDescription: string
+  notFoundHomeLink: string
 }
 
 const en: UiCopy = {
@@ -36,7 +42,6 @@ const en: UiCopy = {
   searchPlaceholder: "Search something yummy 😋",
   noRecipesFound: "No recipes found.",
   prepTime: "Prep time",
-  cookTime: "Cook time",
   serves: "Serves",
   lightMode: "Light mode",
   darkMode: "Dark mode",
@@ -49,6 +54,15 @@ const en: UiCopy = {
   cookingModeButtonRecipe: "Cooking mode",
   markDone: "Mark as done",
   markIncomplete: "Mark as incomplete",
+  metaTitleSuffix: "Lau & Adrian",
+  metaHomeTabTitle: "What are we eating? · Lau & Adrian",
+  metaDefaultDescription:
+    "Our shared recipe collection — meals we cook and return to.",
+  metaRecipesIndexDescription: "Browse every recipe in our collection.",
+  notFoundTitle: "This page isn’t on the menu",
+  notFoundDescription:
+    "The link may be wrong, or we moved the recipe. Try the home page or search from there.",
+  notFoundHomeLink: "Back to recipes",
 }
 
 const es: UiCopy = {
@@ -62,7 +76,6 @@ const es: UiCopy = {
   searchPlaceholder: "Busca algo rico 😋",
   noRecipesFound: "No se encontraron recetas.",
   prepTime: "Preparación",
-  cookTime: "Cocción",
   serves: "Porciones",
   lightMode: "Modo claro",
   darkMode: "Modo oscuro",
@@ -75,6 +88,15 @@ const es: UiCopy = {
   cookingModeButtonRecipe: "Modo cocina",
   markDone: "Marcar como hecho",
   markIncomplete: "Marcar como pendiente",
+  metaTitleSuffix: "Lau y Adrian",
+  metaHomeTabTitle: "¿Qué vamos a comer? · Lau y Adrian",
+  metaDefaultDescription:
+    "Nuestra colección de recetas — platos que cocinamos una y otra vez.",
+  metaRecipesIndexDescription: "Todas las recetas de nuestra colección.",
+  notFoundTitle: "Esta página no está en el menú",
+  notFoundDescription:
+    "El enlace puede estar mal o movimos la receta. Prueba volver al inicio y buscar desde ahí.",
+  notFoundHomeLink: "Volver a las recetas",
 }
 
 export const uiStrings: Record<AppLocale, UiCopy> = { en, es }

@@ -1,10 +1,20 @@
 // Route: /recipes (recipes index)
+import type { Metadata } from "next"
 import { getAllRecipes } from "../../../lib/recipes"
 import { getAppLocale } from "lib/locale-server"
 import { getUi } from "lib/ui-strings"
 import { RecipesList } from "@/app/recipes/RecipesList"
 
 export const dynamic = "force-dynamic"
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getAppLocale()
+  const t = getUi(locale)
+  return {
+    title: t.recipesIndexTitle,
+    description: t.metaRecipesIndexDescription,
+  }
+}
 
 export default async function RecipesPage() {
   const locale = await getAppLocale()

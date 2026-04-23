@@ -1,11 +1,20 @@
 // Route: / (homepage)
+import type { Metadata } from "next"
 import { getAllRecipes } from "../../lib/recipes"
 import { getAppLocale } from "lib/locale-server"
 import { getUi } from "lib/ui-strings"
 import { RecipesList } from "@/app/recipes/RecipesList"
-import WaveDivider from "@/app/components/WaveDivider"
 
 export const dynamic = "force-dynamic"
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getAppLocale()
+  const t = getUi(locale)
+  return {
+    title: { absolute: t.metaHomeTabTitle },
+    description: t.metaDefaultDescription,
+  }
+}
 
 export default async function HomePage() {
   const locale = await getAppLocale()
@@ -28,7 +37,6 @@ export default async function HomePage() {
       <div className="max-w-2xl mx-auto">
         <header className="mb-7 text-center">
           <h1>{t.homeTitle}</h1>
-          <WaveDivider />
         </header>
 
         <RecipesList recipes={recipes} locale={locale} />

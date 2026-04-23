@@ -24,7 +24,6 @@ export type RecipeMeta = {
   tags?: string[]
   servings?: string | number
   prepTime?: string | number
-  cookTime?: string | number
 }
 
 export function getAllRecipes(locale: AppLocale = "en"): RecipeMeta[] {
@@ -57,7 +56,6 @@ export function getAllRecipes(locale: AppLocale = "en"): RecipeMeta[] {
         ...(Array.isArray(data.tags) && { tags: data.tags.map(String) }),
         ...(data.servings != null && { servings: data.servings }),
         ...(data.prepTime != null && { prepTime: data.prepTime }),
-        ...(data.cookTime != null && { cookTime: data.cookTime }),
       })
     } catch (err) {
       console.warn(`[getAllRecipes] Skipped ${file}:`, err)

@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useMemo, useState } from "react"
 import type { AppLocale } from "lib/locale"
 import { getUi } from "lib/ui-strings"
+import WaveDivider from "@/app/components/WaveDivider"
 
 type RecipeMeta = {
   title: string
@@ -12,7 +13,6 @@ type RecipeMeta = {
   tags?: string[]
   servings?: string | number
   prepTime?: string | number
-  cookTime?: string | number
 }
 
 function matchesQuery(recipe: RecipeMeta, q: string): boolean {
@@ -66,6 +66,10 @@ export function RecipesList({
           placeholder:text-[color:var(--color-text-subtle)]
           focus-visible:outline-none focus-visible:ring-0"
         />
+      </div>
+
+      <div className="mb-6">
+        <WaveDivider />
       </div>
 
       <ul className="space-y-0">

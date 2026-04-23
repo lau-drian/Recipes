@@ -1,4 +1,5 @@
 // Route: /recipes/[slug] — single recipe detail
+import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { getRecipeBySlug } from "../../../../lib/recipes"
 import { getAppLocale } from "lib/locale-server"
@@ -14,8 +15,31 @@ type RecipeMeta = {
   category?: string
   tags?: string[]
   prepTime?: string | number
-  cookTime?: string | number
   servings?: string | number
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const locale = await getAppLocale()
+  const t = getUi(locale)
+  const recipe = (await getRecipeBySlug(slug, locale)) as RecipeMeta | null
+  if (!recipe?.title) {
+    return {
+      title: { absolute: `${t.notFoundTitle} · ${t.metaTitleSuffix}` },
+    }
+  }
+  const description =
+    typeof recipe.intro === "string" && recipe.intro.trim()
+      ? recipe.intro
+      : t.metaDefaultDescription
+  return {
+    title: recipe.title,
+    description,
+  }
 }
 
 export default async function RecipeDetailPage({
@@ -33,41 +57,34 @@ export default async function RecipeDetailPage({
     <main className="min-h-screen p-6">
       <div className="max-w-[680px] mx-auto">
         <h1>{recipe.title}</h1>
-  {recipe.intro ? (
-    <p className="mb-3 text-[color:var(--color-text-subtle)]">    
-    {recipe.intro}
-  </p>
-) 
-: null}
+        {recipe.intro ? (
+          <p className="mb-3 text-[color:var(--color-text-subtle)]">
+            {recipe.intro}
+          </p>
+        ) : null}
 
         <section className="mb-10">
-        <p className="text-sm text-[color:var(--color-text-subtle)]">
-          <span className="font-semibold text-[color:var(--color-text-subtle)]">
-            {t.prepTime}:
-          </span>{" "}
-          {recipe.prepTime}{" "}
-          <span className="mx-1">|</span>
-          <span className="font-semibold text-[color:var(--color-text-subtle)]">
-            {t.cookTime}:
-          </span>{" "}
-          {recipe.cookTime}{" "}
-          <span className="mx-1">|</span>
-          <span className="font-semibold text-[color:var(--color-text-subtle)]">
-            {t.serves}:
-          </span>{" "}
-          {recipe.servings}
-        </p>
+          <p className="text-sm text-[color:var(--color-text-subtle)]">
+            <span className="font-semibold text-[color:var(--color-text-subtle)]">
+              {t.prepTime}:
+            </span>{" "}
+            {recipe.prepTime}{" "}
+            <span className="mx-1">|</span>
+            <span className="font-semibold text-[color:var(--color-text-subtle)]">
+              {t.serves}:
+            </span>{" "}
+            {recipe.servings}
+          </p>
 
-<div className="flex flex-wrap items-center gap-3 mb-6 pt-6">
-<Tag>{recipe.category}</Tag>
-{recipe.tags?.map((t) => (
-  <Tag key={t}>{t}</Tag>
-))}
-</div>
-  
-<WaveDivider/>
+          <div className="flex flex-wrap items-center gap-3 mb-6 pt-6">
+            <Tag>{recipe.category}</Tag>
+            {recipe.tags?.map((tag) => (
+              <Tag key={tag}>{tag}</Tag>
+            ))}
+          </div>
 
-</section>
+          <WaveDivider />
+        </section>
 
         <CookingModeRecipe
           content={recipe.content}
