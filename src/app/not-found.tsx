@@ -22,7 +22,7 @@ export default async function NotFound() {
   return (
     <div className="mx-auto max-w-[680px] px-1 py-10 text-center sm:py-16">
       <Image
-        src="/images/not-found-polly.png"
+        src="/images/not-found-team.png"
         alt=""
         width={320}
         height={320}

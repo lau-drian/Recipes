@@ -13,7 +13,7 @@ cookTime: 45 min
 **Wet**
 - 1 cup almond milk
 - 2 Tbsp flaxseeds + 6 Tbsp lukewarm water combined and sit 5 min
-- 1 ½  banana chopped
+- 1 ½ banana chopped
 - ½ cup blueberries or raspberries
 - 1 cup strawberries
 - 3 Tbsp melted coconut oil

@@ -11,7 +11,7 @@ cookTime: 25 min
 ---
 
 ## Ingredientes
-- Fideos xxxx
+- Fideos udon o de arroz
 - 2 tazas de agua con 3 cubitos de caldo de verduras
 - 1 cda de aceite de oliva
 - ¼ de cebolla picada fina

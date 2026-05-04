@@ -34,7 +34,7 @@ export type UiCopy = {
 
 const en: UiCopy = {
   siteTitle: "Recipes",
-  homeTitle: "What are we eating?",
+  homeTitle: "Lau & Adrian’s cookbook",
   recipesIndexTitle: "Recipes",
   recipesIndexSubtitle: "Tap a recipe to open it.",
   recipesLoadError:
@@ -70,9 +70,9 @@ const en: UiCopy = {
 
 const es: UiCopy = {
   siteTitle: "Recetas",
-  homeTitle: "¿Qué vamos a comer?",
+  homeTitle: "El recetario de Adrián & Lau",
   recipesIndexTitle: "Recetas",
-  recipesIndexSubtitle: "Toca una receta para abrirla.",
+  recipesIndexSubtitle: "Selecciona una receta para abrirla.",
   recipesLoadError:
     "No se pudieron cargar las recetas. Revisa la terminal por si hay errores.",
   searchLabel: "Buscar recetas",

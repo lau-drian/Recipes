@@ -11,7 +11,7 @@ cookTime: 25 min
 ---
 
 ## Ingredients
-- xxxx noodles
+- Udon or rice noodles
 - 2 cups water with 3 cubes of veggie broth
 - 1 Tbsp olive oil
 - ¼ onion finely chopped

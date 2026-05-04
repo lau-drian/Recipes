@@ -13,11 +13,11 @@ cookTime: 40 min
 **Relleno de manzana**
 - 1 kg de manzanas
 - 1 ½ tazas de agua
-- 2 cdas de jengibre fresco picado fino
+- 2 cdas de jengibre fresco picado finamente
 - 2 cdas de semillas de cardamomo
 - 2 cditas de canela en polvo
 - 2 ramas de canela
-- 30 hojas de melisa picadas *(opcional)*
+- 30 hojas de toronjil *(opcional)*
 - ½ limón, jugo y ralladura
 
 ## Pasos

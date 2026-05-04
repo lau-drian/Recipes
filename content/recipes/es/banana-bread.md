@@ -10,32 +10,27 @@ cookTime: 45 min
 ---
 
 ## Ingredientes
-**Húmedos**
-- 1 taza de leche de almendras
-- 2 cdas de linaza + 6 cdas de agua tibia, mezclar y dejar 5 min
-- 1 ½ plátano picado
-- ½ taza de arándanos o frambuesas
-- 1 taza de fresas
-- 3 cdas de aceite de coco derretido
-
 **Secos**
-- 2 tazas de avena en hojuelas
-- ⅓ taza de almendras
-- ⅓ taza de semillas de cáñamo (opcional)
-- ⅔ taza de coco rallado
+- 1½ tazas de harina de avena 
+- ⅓ taza de almendras molidas
+- 1½ cdita de polvo para hornear
+- ½ cdita de bicarbonato de sodio
 - 2 cditas de canela
 - 1 cdita de cardamomo
-- 1 cdita de polvo para hornear
+- ¼ cdita sal de mar
+
+**Húmedos**
+- 1 cda de aceite de coco derretido
 - 1 cdita de vainilla
+- 3 plátanos maduros 
+- 2 cdas de leche de almendra (más si la mezcla está muy densa)
+- 1–2 dátiles si te gusta más dulce (opcional)
 
 ## Pasos
 1. Precalienta el horno a 175 °C.
-2. Mezcla la linaza hidratada, la leche y el aceite de coco.
-3. Coloca el plátano y las fresas en el fondo de un molde engrasado.
-4. Reserva 2 cdas de almendras, semillas de cáñamo y coco rallado.
-5. En un bol grande combina la avena, el resto de almendras, semillas de cáñamo y coco, el polvo para hornear, la canela, azúcar morena y sal.
-6. En un bol mediano, combina la leche de almendras, el jarabe de arce y el aceite de coco; bate. Incorpora la mezcla de linaza y mezcla hasta que quede homogénea.
-7. Vierte lo húmedo sobre lo seco y mezcla.
-8. Arma capas de plátano y fresas en el molde y cubre con la mezcla de avena. Espolvorea arándanos y lo que reservaste de almendras, cáñamo y coco.
-9. Hornea **40-50 minutos** o hasta que la superficie esté dorada y el centro firme. Mete un cuchillo y verifica que el centro esté cocido.
-10. Saca del horno y deja enfriar 10 min antes de servir.
+2. En un bowl grande combina los ingredientes secos y después agrega los ingredientes húmedos. 
+3. Hornea **40-45 minutos**.
+4. Saca del horno y deja enfriar 10 min antes de servir.
+
+
+
