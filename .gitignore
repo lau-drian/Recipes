@@ -21,6 +21,9 @@
 /build
 
 # misc
+# Legacy 404 illustration kept only on disk for backup; app uses not-found-team.png
+public/images/not-found-polly.png
+
 .DS_Store
 *.pem
 

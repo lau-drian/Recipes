@@ -231,6 +231,13 @@ main h1 {
   color: var(--text-default);
 }
 
+/* Recipe body uses Karla; load real italic (not browser-synthesized slant) for *optional* etc. */
+.prose em {
+  font-family: var(--font-karla);
+  font-style: italic;
+  font-synthesis: none;
+}
+
 /* Bullets and numbers outside content margin (list-outside) – higher specificity to override typography plugin */
 body main .prose ul,
 body main .prose ol {

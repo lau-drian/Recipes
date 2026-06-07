@@ -7,6 +7,7 @@ import { Karla, Source_Serif_4, JetBrains_Mono } from "next/font/google"
 
 const karla = Karla({
   subsets: ["latin"],
+  style: ["normal", "italic"],
   variable: "--font-karla",
   display: "swap",
 })
