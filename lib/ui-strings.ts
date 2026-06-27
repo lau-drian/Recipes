@@ -6,8 +6,14 @@ export type UiCopy = {
   recipesIndexTitle: string
   recipesIndexSubtitle: string
   recipesLoadError: string
+  categoryFilterLabel: string
   searchLabel: string
   searchPlaceholder: string
+  openSearchAria: string
+  closeSearchAria: string
+  closeSearchLabel: string
+  searchLoading: string
+  allCategories: string
   noRecipesFound: string
   prepTime: string
   servings: string
@@ -36,11 +42,17 @@ const en: UiCopy = {
   siteTitle: "Recipes",
   homeTitle: "Lau & Adrian’s cookbook",
   recipesIndexTitle: "Recipes",
-  recipesIndexSubtitle: "Tap a recipe to open it.",
+  recipesIndexSubtitle: "Filter by category to browse the collection.",
   recipesLoadError:
     "Unable to load recipes. Check the terminal for errors.",
+  categoryFilterLabel: "Filter by category",
   searchLabel: "Search recipes",
   searchPlaceholder: "Search something yummy 😋",
+  openSearchAria: "Search recipes",
+  closeSearchAria: "Close search",
+  closeSearchLabel: "Esc",
+  searchLoading: "Loading recipes…",
+  allCategories: "All",
   noRecipesFound: "No recipes found.",
   prepTime: "Prep time",
   servings: "Servings",
@@ -72,11 +84,17 @@ const es: UiCopy = {
   siteTitle: "Recetas",
   homeTitle: "El recetario de Adrián & Lau",
   recipesIndexTitle: "Recetas",
-  recipesIndexSubtitle: "Selecciona una receta para abrirla.",
+  recipesIndexSubtitle: "Filtra por categoría para explorar la colección.",
   recipesLoadError:
     "No se pudieron cargar las recetas. Revisa la terminal por si hay errores.",
+  categoryFilterLabel: "Filtrar por categoría",
   searchLabel: "Buscar recetas",
   searchPlaceholder: "Busca algo rico 😋",
+  openSearchAria: "Buscar recetas",
+  closeSearchAria: "Cerrar búsqueda",
+  closeSearchLabel: "Esc",
+  searchLoading: "Cargando recetas…",
+  allCategories: "Todas",
   noRecipesFound: "No se encontraron recetas.",
   prepTime: "Preparación",
   servings: "Porciones",

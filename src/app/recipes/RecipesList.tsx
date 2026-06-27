@@ -4,6 +4,13 @@ import Link from "next/link"
 import { useMemo, useState } from "react"
 import type { AppLocale } from "lib/locale"
 import { getUi } from "lib/ui-strings"
+import {
+  CATEGORY_ORDER,
+  HIDDEN_CATEGORIES,
+  getCategoryLabel,
+  normalizeCategory,
+} from "lib/categories"
+import FilterPill from "@/app/components/FilterPill"
 import WaveDivider from "@/app/components/WaveDivider"
 
 type RecipeMeta = {
@@ -15,17 +22,6 @@ type RecipeMeta = {
   prepTime?: string | number
 }
 
-function matchesQuery(recipe: RecipeMeta, q: string): boolean {
-  if (recipe.title.toLowerCase().includes(q)) return true
-  if (recipe.category && recipe.category.toLowerCase().includes(q)) return true
-  if (
-    Array.isArray(recipe.tags) &&
-    recipe.tags.some((tag) => tag.toLowerCase().includes(q))
-  )
-    return true
-  return false
-}
-
 export function RecipesList({
   recipes,
   locale,
@@ -34,39 +30,59 @@ export function RecipesList({
   locale: AppLocale
 }) {
   const t = getUi(locale)
-  const [query, setQuery] = useState("")
+  const [activeCategory, setActiveCategory] = useState<string | null>(null)
+
+  const categories = useMemo(() => {
+    const present = new Set<string>()
+    for (const recipe of recipes) {
+      const cat = normalizeCategory(recipe.category)
+      if (!cat || HIDDEN_CATEGORIES.has(cat)) continue
+      present.add(cat)
+    }
+    const ordered = CATEGORY_ORDER.filter((c) => present.has(c)).map(
+      (c) => c as string
+    )
+    const extras = [...present]
+      .filter((c) => !CATEGORY_ORDER.includes(c as (typeof CATEGORY_ORDER)[number]))
+      .sort()
+    return [...ordered, ...extras]
+  }, [recipes])
 
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase()
-    if (!q) return recipes
-    return recipes.filter((recipe) => matchesQuery(recipe, q))
-  }, [query, recipes])
+    return recipes.filter((recipe) => {
+      if (activeCategory && normalizeCategory(recipe.category) !== activeCategory)
+        return false
+      return true
+    })
+  }, [activeCategory, recipes])
 
   return (
     <>
-      <div className="mb-6 relative">
-        <label htmlFor="search" className="sr-only">
-          {t.searchLabel}
-        </label>
-        <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[color:var(--color-text-subtle)]" aria-hidden>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.35-4.35" />
-          </svg>
-        </span>
-        <input
-          id="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder={t.searchPlaceholder}
-          className="w-full rounded-full border pl-11 pr-4 py-3
-          bg-[color:var(--color-surface-elevated)]
-          text-[color:var(--color-text-default)]
-          border-[color:var(--color-border-default)]
-          placeholder:text-[color:var(--color-text-subtle)]
-          focus-visible:outline-none focus-visible:ring-0"
-        />
-      </div>
+      {categories.length > 0 && (
+        <div
+          className="mb-6 flex flex-wrap gap-2"
+          role="group"
+          aria-label={t.categoryFilterLabel}
+        >
+          <FilterPill
+            active={activeCategory === null}
+            onClick={() => setActiveCategory(null)}
+          >
+            {t.allCategories}
+          </FilterPill>
+          {categories.map((cat) => (
+            <FilterPill
+              key={cat}
+              active={activeCategory === cat}
+              onClick={() =>
+                setActiveCategory((prev) => (prev === cat ? null : cat))
+              }
+            >
+              {getCategoryLabel(cat, locale)}
+            </FilterPill>
+          ))}
+        </div>
+      )}
 
       <div className="mb-6">
         <WaveDivider />
@@ -77,10 +93,9 @@ export function RecipesList({
           <li key={recipe.slug}>
             <Link
               href={`/recipes/${recipe.slug}`}
-              className="block rounded-xl border-bottom-dashed bg-surface p-4 hover:border-border-default active:scale-[0.99] transition"            >
-              <div className="text-xl font-semibold">
-                {recipe.title}
-              </div>
+              className="block rounded-xl border-bottom-dashed bg-surface p-4 hover:border-border-default active:scale-[0.99] transition"
+            >
+              <div className="text-xl font-semibold">{recipe.title}</div>
             </Link>
           </li>
         ))}

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import type { AppLocale } from "lib/locale"
 import { getUi } from "lib/ui-strings"
 import LanguageToggle from "@/app/components/LanguageToggle"
+import SearchModal from "@/app/components/SearchModal"
 import ThemeToggle from "@/app/components/ThemeToggle"
 
 const SCROLL_THRESHOLD_PX = 6
@@ -35,6 +36,7 @@ export default function SiteHeader({ locale }: { locale: AppLocale }) {
         </Link>
         <div className="flex flex-wrap items-center justify-end gap-2">
           <LanguageToggle locale={locale} />
+          <SearchModal locale={locale} />
           <ThemeToggle
             labels={{
               lightMode: t.lightMode,
