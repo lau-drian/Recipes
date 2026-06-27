@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { getRecipeBySlug } from "../../../../lib/recipes"
 import { getAppLocale } from "lib/locale-server"
 import { getUi } from "lib/ui-strings"
+import { getCategoryLabel } from "lib/categories"
 import WaveDivider from "@/app/components/WaveDivider"
 import Tag from "@/app/components/Tag"
 import CookingModeRecipe from "@/app/components/CookingModeRecipe"
@@ -77,7 +78,9 @@ export default async function RecipeDetailPage({
           </p>
 
           <div className="flex flex-wrap items-center gap-3 mb-6 pt-6">
-            <Tag>{recipe.category}</Tag>
+            {recipe.category ? (
+              <Tag>{getCategoryLabel(recipe.category, locale)}</Tag>
+            ) : null}
             {recipe.tags?.map((tag) => (
               <Tag key={tag}>{tag}</Tag>
             ))}

@@ -3,7 +3,7 @@ title: Tzatziki
 slug: tzatziki
 tags:
   - salado
-category: sides
+category: dip
 prepTime: 15 min
 ---
 

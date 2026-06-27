@@ -1,9 +1,9 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import type { AppLocale } from "lib/locale"
-import { getCategoryLabel } from "lib/categories"
 import { getUi } from "lib/ui-strings"
 import {
   matchesRecipeQuery,
@@ -27,6 +27,27 @@ function SearchIcon({ className }: { className?: string }) {
     >
       <circle cx="11" cy="11" r="8" />
       <path d="m21 21-4.35-4.35" />
+    </svg>
+  )
+}
+
+function CloseIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
     </svg>
   )
 }
@@ -87,8 +108,10 @@ export default function SearchModal({ locale }: { locale: AppLocale }) {
   }, [open])
 
   const results = useMemo(() => {
-    return recipes.filter((recipe) => matchesRecipeQuery(recipe, query))
-  }, [recipes, query])
+    return recipes.filter((recipe) => matchesRecipeQuery(recipe, query, locale))
+  }, [recipes, query, locale])
+
+  const showEmpty = loaded && query.trim() !== "" && results.length === 0
 
   return (
     <>
@@ -125,12 +148,13 @@ export default function SearchModal({ locale }: { locale: AppLocale }) {
               <SearchIcon className="shrink-0 text-[color:var(--color-text-subtle)]" />
               <input
                 ref={inputRef}
-                type="search"
+                type="text"
+                role="searchbox"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={t.searchPlaceholder}
                 aria-label={t.searchLabel}
-                className="min-w-0 flex-1 bg-transparent text-lg text-[color:var(--color-text-default)] placeholder:text-[color:var(--color-text-subtle)] focus:outline-none"
+                className="min-w-0 flex-1 rounded-xl bg-transparent px-1 py-1 text-lg text-[color:var(--color-text-default)] placeholder:text-[color:var(--color-text-subtle)] focus:outline-none focus-visible:shadow-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)]"
                 autoComplete="off"
                 autoCorrect="off"
                 spellCheck={false}
@@ -138,21 +162,35 @@ export default function SearchModal({ locale }: { locale: AppLocale }) {
               <button
                 type="button"
                 onClick={closeSearch}
-                className="shrink-0 rounded-full px-2 py-1 text-sm text-[color:var(--color-text-subtle)] hover:text-[color:var(--color-text-default)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)]"
+                className="inline-flex size-8 shrink-0 items-center justify-center rounded-full text-[color:var(--color-text-subtle)] hover:bg-[color:var(--color-surface)] hover:text-[color:var(--color-text-default)] focus:outline-none focus-visible:shadow-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)]"
                 aria-label={t.closeSearchAria}
               >
-                {t.closeSearchLabel}
+                <CloseIcon className="size-4 shrink-0" />
               </button>
             </div>
 
             <ul
-              className="max-h-[min(50vh,420px)] overflow-y-auto py-2"
+              className="max-h-[min(50vh,420px)] overflow-y-auto px-2 py-2"
               role="listbox"
               aria-label={t.searchLabel}
             >
-              {results.length === 0 ? (
-                <li className="px-4 py-8 text-center text-[color:var(--color-text-subtle)]">
-                  {loaded ? t.noRecipesFound : t.searchLoading}
+              {showEmpty ? (
+                <li className="px-2 py-6 text-center">
+                  <Image
+                    src="/images/not-found-team.png"
+                    alt=""
+                    width={160}
+                    height={160}
+                    className="mx-auto mb-4 h-auto w-[clamp(100px,28vw,160px)] object-contain"
+                    sizes="160px"
+                  />
+                  <p className="text-[color:var(--color-text-subtle)]">
+                    {t.noRecipesFound}
+                  </p>
+                </li>
+              ) : !loaded ? (
+                <li className="px-2 py-8 text-center text-[color:var(--color-text-subtle)]">
+                  {t.searchLoading}
                 </li>
               ) : (
                 results.map((recipe) => (
@@ -160,16 +198,11 @@ export default function SearchModal({ locale }: { locale: AppLocale }) {
                     <Link
                       href={`/recipes/${recipe.slug}`}
                       onClick={closeSearch}
-                      className="block px-4 py-3 transition hover:bg-[color:var(--color-bg-callout)] focus:outline-none focus-visible:bg-[color:var(--color-bg-callout)]"
+                      className="block rounded-xl px-3 py-3 transition focus:outline-none focus-visible:shadow-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-focus)]"
                     >
                       <div className="font-medium text-[color:var(--color-text-default)]">
                         {recipe.title}
                       </div>
-                      {recipe.category ? (
-                        <div className="mt-0.5 text-sm text-[color:var(--color-text-subtle)]">
-                          {getCategoryLabel(recipe.category, locale)}
-                        </div>
-                      ) : null}
                     </Link>
                   </li>
                 ))
